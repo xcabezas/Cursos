@@ -1,4 +1,4 @@
-enum 50100 "Course Type"
+enum 50100 "IUSUP Course Type"
 {
     Extensible = true;
     Caption = 'Course Type', Comment = 'ESP="Tipo Curso"';

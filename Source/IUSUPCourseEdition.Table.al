@@ -1,4 +1,4 @@
-table 50102 "Course Edition"
+table 50102 "IUSUP Course Edition"
 {
     Caption = 'Course Edition', Comment = 'ESP="Edición Curso"';
     DataClassification = CustomerContent;
@@ -8,7 +8,7 @@ table 50102 "Course Edition"
         field(1; "Course No."; Code[20])
         {
             Caption = 'Course No.', Comment = 'ESP="Nº Curso"';
-            TableRelation = Course;
+            TableRelation = "IUSUP Course";
         }
         field(2; "Edition"; Code[20])
         {

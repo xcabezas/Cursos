@@ -1,4 +1,4 @@
-table 50100 Course
+table 50100 "IUSUP Course"
 {
 
     Caption = 'Course Table', Comment = 'ESP="Tabla Curso"';
@@ -13,7 +13,7 @@ table 50100 Course
             trigger OnValidate()
             var
                 IsHandled: Boolean;
-                ResSetup: Record "Course Setup";
+                ResSetup: Record "IUSUP Course Setup";
                 NoSeries: Codeunit "No. Series";
             begin
                 IsHandled := false;
@@ -57,7 +57,7 @@ table 50100 Course
             OptionCaption = ' ,Instructor-Lead, Video Tutorial', Comment = 'ESP=" ,Guiador por profesor, Video Tutorial"';
 
         }
-        field(8; "Type (Enum)"; Enum "Course Type")
+        field(8; "Type (Enum)"; Enum "IUSUP Course Type")
         {
             Caption = 'Type (Enum)', Comment = 'ESP="Tipo (Enum)"';
         }
@@ -72,9 +72,9 @@ table 50100 Course
 
     trigger OnInsert()
     var
-        Resource: Record Course;
+        Resource: Record "IUSUP Course";
         IsHandled: Boolean;
-        ResSetup: Record "Course Setup";
+        ResSetup: Record "IUSUP Course Setup";
         NoSeries: Codeunit "No. Series";
     begin
         IsHandled := false;
@@ -99,15 +99,15 @@ table 50100 Course
 
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeOnInsert(var Resource: Record Course; var IsHandled: Boolean; var xResource: Record Course)
+    local procedure OnBeforeOnInsert(var Resource: Record "IUSUP Course"; var IsHandled: Boolean; var xResource: Record "IUSUP Course")
     begin
     end;
 
-    procedure AssistEdit(OldRes: Record Course) Result: Boolean
+    procedure AssistEdit(OldRes: Record "IUSUP Course") Result: Boolean
     var
         IsHandled: Boolean;
-        ResSetup: Record "Course Setup";
-        Res: Record Course;
+        ResSetup: Record "IUSUP Course Setup";
+        Res: Record "IUSUP Course";
         NoSeries: Codeunit "No. Series";
 
 
@@ -129,12 +129,12 @@ table 50100 Course
 
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeAssistEdit(var Resource: Record Course; xOldRes: Record Course; var IsHandled: Boolean; var Result: Boolean)
+    local procedure OnBeforeAssistEdit(var Resource: Record "IUSUP Course"; xOldRes: Record "IUSUP Course"; var IsHandled: Boolean; var Result: Boolean)
     begin
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeValidateNo(var Resource: Record Course; xResource: Record Course; var IsHandled: Boolean)
+    local procedure OnBeforeValidateNo(var Resource: Record "IUSUP Course"; xResource: Record "IUSUP Course"; var IsHandled: Boolean)
     begin
     end;
 

@@ -1,9 +1,9 @@
-page 50101 "Course Card"
+page 50101 "IUSUP Course Card"
 {
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = Course;
+    SourceTable = "IUSUP Course";
     Caption = 'Course Card', Comment = 'ESP="Ficha Curso"';
 
 
@@ -58,7 +58,7 @@ page 50101 "Course Card"
                 }
 
             }
-            part(Editions; "Course Editions Factbox")
+            part(Editions; "IUSUP Course Editions Factbox")
             {
                 SubPageLink = "Course No." = field("No.");
             }

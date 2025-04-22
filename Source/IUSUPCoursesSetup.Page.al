@@ -1,12 +1,12 @@
-page 50102 "Courses Setup"
+page 50102 "IUSUP Courses Setup"
 {
-    AccessByPermission = TableData Course = R;
+    AccessByPermission = TableData "IUSUP Course" = R;
     ApplicationArea = All;
     Caption = 'Courses Setup', Comment = 'ESP="Configuración Setup"';
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = Card;
-    SourceTable = "Course Setup";
+    SourceTable = "IUSUP Course Setup";
     UsageCategory = Administration;
 
     layout

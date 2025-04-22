@@ -1,4 +1,4 @@
-table 50101 "Course Setup"
+table 50101 "IUSUP Course Setup"
 {
     Caption = 'Courses Setup', Comment = 'ESP="Configuración Cursos"';
     DataClassification = CustomerContent;

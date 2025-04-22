@@ -1,10 +1,10 @@
-page 50103 "Course Editions Factbox"
+page 50103 "IUSUP Course Editions Factbox"
 {
     Caption = 'Course Editions', Comment = 'ESP="Ediciones curso"';
     PageType = ListPart;
     ApplicationArea = All;
     UsageCategory = None;
-    SourceTable = "Course Edition";
+    SourceTable = "IUSUP Course Edition";
 
     layout
     {

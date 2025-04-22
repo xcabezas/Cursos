@@ -1,12 +1,12 @@
-page 50100 "Course List"
+page 50100 "IUSUP Course List"
 {
     Caption = 'Courses', Comment = 'ESP="Cursos"';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = Course;
+    SourceTable = "IUSUP Course";
     Editable = false;
-    CardPageId = "Course Card";
+    CardPageId = "IUSUP Course Card";
 
     layout
     {
@@ -24,7 +24,7 @@ page 50100 "Course List"
         }
         area(FactBoxes)
         {
-            part(Editions; "Course Editions Factbox")
+            part(Editions; "IUSUP Course Editions Factbox")
             {
                 SubPageLink = "Course No." = field("No.");
             }
@@ -38,7 +38,7 @@ page 50100 "Course List"
             action(CourseEditions)
             {
                 Caption = 'Editions', Comment = 'ESP="Ediciones"';
-                RunObject = page "Course Editions";
+                RunObject = page "IUSUP Course Editions";
                 RunPageLink = "Course No." = field("No.");
             }
         }
