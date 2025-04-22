@@ -1,25 +1,26 @@
 table 50102 "Course Edition"
 {
-    CaptionML = ENU = 'Course Edition', ESP = 'Edición Curso';
+    Caption = 'Course Edition', Comment = 'ESP="Edición Curso"';
+    DataClassification = CustomerContent;
 
     fields
     {
         field(1; "Course No."; Code[20])
         {
-            CaptionML = ENU = 'Course No.', ESP = 'Nº Curso';
+            Caption = 'Course No.', Comment = 'ESP="Nº Curso"';
             TableRelation = Course;
         }
         field(2; "Edition"; Code[20])
         {
-            CaptionML = ENU = 'Edition', ESP = 'Edición';
+            Caption = 'Edition', Comment = 'ESP="Edición"';
         }
         field(3; "Start Date"; Date)
         {
-            CaptionML = ENU = 'Start Date', ESP = 'Fecha Inicio';
+            Caption = 'Start Date', Comment = 'ESP="Fecha Inicio"';
         }
         field(4; "Max. Students"; Integer)
         {
-            CaptionML = ENU = 'Max. Students', ESP = 'Nº Max. Alumnos';
+            Caption = 'Max. Students', Comment = 'ESP="Nº Max. Alumnos"';
         }
     }
     keys

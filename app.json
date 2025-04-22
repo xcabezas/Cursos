@@ -3,7 +3,7 @@
   "name": "Cursos",
   "publisher": "Default Publisher",
   "version": "1.0.0.0",
-  "brief": "",
+  "brief": " ",
   "description": "",
   "privacyStatement": "",
   "EULA": "",
@@ -27,6 +27,6 @@
   },
   "runtime": "14.0",
   "features": [
-    "NoImplicitWith"
+    "NoImplicitWith", "TranslationFile"
   ]
 }

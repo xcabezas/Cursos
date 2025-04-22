@@ -1,11 +1,11 @@
 permissionset 50100 "CourseSUPER"
 {
-    CaptionML = ENU = 'Permisions', ESP = 'Permisos';
+    Caption = 'Permisions', Comment = 'ESP="Permisos"';
     Assignable = true;
     Permissions =
-        table Course = X,
-        table "Course Edition" = X,
-        table "Course Setup" = X,
+        tabledata Course = RIMD,
+        tabledata "Course Edition" = RIMD,
+        tabledata "Course Setup" = RIMD,
         page "Course Card" = X,
         page "Course Editions" = X,
         page "Course Editions Factbox" = X,

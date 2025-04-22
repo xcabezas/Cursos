@@ -1,13 +1,14 @@
 table 50100 Course
 {
 
-    CaptionML = ENU = 'Course Table', ESP = 'Tabla Curso';
+    Caption = 'Course Table', Comment = 'ESP="Tabla Curso"';
+    DataClassification = CustomerContent;
 
     fields
     {
         field(1; "No."; Code[20])
         {
-            CaptionML = ENU = 'No. from caption', ESP = 'Nº';
+            Caption = 'No. from caption', Comment = 'ESP="Nº", FRA="Numero"';
 
             trigger OnValidate()
             var
@@ -29,40 +30,40 @@ table 50100 Course
         }
         field(2; "Name"; Text[100])
         {
-            CaptionML = ENU = 'Name', ESP = 'Nombre';
+            Caption = 'Name', Comment = 'ESP="Nombre"';
         }
         field(3; "Description"; Text[2048])
         {
-            CaptionML = ENU = 'Description', ESP = 'Descripción';
+            Caption = 'Description', Comment = 'ESP="Descripción"';
         }
         field(4; "Hours"; Integer)
         {
-            CaptionML = ENU = 'Hours', ESP = 'Horas';
+            Caption = 'Hours', Comment = 'ESP="Horas"';
         }
         field(5; "Price"; Decimal)
         {
-            CaptionML = ENU = 'Price', ESP = 'Precio';
+            Caption = 'Price', Comment = 'ESP="Precio"';
         }
         field(6; "Language Code"; Code[20])
         {
             TableRelation = Language;
-            CaptionML = ENU = 'Language Code', ESP = 'Codigo de Lenguage';
+            Caption = 'Language Code', Comment = 'ESP="Codigo de Lenguage"';
 
         }
         field(7; "Type (Option)"; Option)
         {
             OptionMembers = " ","Instructor-Lead","Video Tutorial";
-            CaptionML = ENU = 'Type (Option)', ESP = 'Tipo (Opcion)';
-            OptionCaptionML = ENU = ' ,Instructor-Lead, Video Tutorial', ESP = ' ,Guiador por profesor, Video Tutorial';
+            Caption = 'Type (Option)', Comment = 'ESP="Tipo (Opcion)"';
+            OptionCaption = ' ,Instructor-Lead, Video Tutorial', Comment = 'ESP=" ,Guiador por profesor, Video Tutorial"';
 
         }
         field(8; "Type (Enum)"; Enum "Course Type")
         {
-            CaptionML = ENU = 'Type (Enum)', ESP = 'Tipo (Enum)';
+            Caption = 'Type (Enum)', Comment = 'ESP="Tipo (Enum)"';
         }
         field(56; "No. Series"; Code[20])
         {
-            CaptionMl = ENU = 'No. Series', ESP = 'Nº Serie';
+            Caption = 'No. Series', Comment = 'ESP="Nº Serie"';
             Editable = false;
             TableRelation = "No. Series";
         }

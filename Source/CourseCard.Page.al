@@ -4,7 +4,7 @@ page 50101 "Course Card"
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = Course;
-    CaptionML = ENU = 'Course Card', ESP = 'Ficha Curso';
+    Caption = 'Course Card', Comment = 'ESP="Ficha Curso"';
 
 
     layout
@@ -13,11 +13,11 @@ page 50101 "Course Card"
         {
             group(General)
             {
-                CaptionML = ENU = 'General', ESP = 'General';
+                Caption = 'General', Comment = 'ESP="General"';
 
                 field("No."; Rec."No.")
                 {
-                    CaptionML = ENU = 'No. from caption', ESP = 'Nº';
+                    Caption = 'No. from caption', Comment = 'ESP="Nº"';
                     trigger OnAssistEdit()
                     begin
                         if Rec.AssistEdit(xRec) then
@@ -26,30 +26,30 @@ page 50101 "Course Card"
                 }
                 field(Name; Rec.Name)
                 {
-                    CaptionML = ENU = 'Name', ESP = 'Nombre';
+                    Caption = 'Name', Comment = 'ESP="Nombre"';
                 }
 
             }
             group(TrainingDetails)
             {
-                CaptionML = ENU = 'TrainingDetails', ESP = 'Detalles de Entrenamiento';
+                Caption = 'TrainingDetails', Comment = 'ESP="Detalles de Entrenamiento"';
 
                 field(Description; Rec.Description)
                 {
-                    CaptionML = ENU = 'Description', ESP = 'Descripción';
+                    Caption = 'Description', Comment = 'ESP="Descripción"';
                 }
                 field(Hours; Rec.Hours)
                 {
-                    CaptionML = ENU = 'Hours', ESP = 'Horas';
+                    Caption = 'Hours', Comment = 'ESP="Horas"';
                 }
                 field("Language Code"; Rec."Language Code")
                 {
-                    CaptionML = ENU = 'Language Code', ESP = 'Codigo de Lenguage';
+                    Caption = 'Language Code', Comment = 'ESP="Codigo de Lenguage"';
 
                 }
                 field("Type (Enum)"; Rec."Type (Enum)")
                 {
-                    CaptionML = ENU = 'Type (Enum)', ESP = 'Tipo (Enum)';
+                    Caption = 'Type (Enum)', Comment = 'ESP="Tipo (Enum)"';
 
                 }
                 field("Type (Option)"; Rec."Type (Option)")
@@ -64,7 +64,7 @@ page 50101 "Course Card"
             }
             group(Invoicing)
             {
-                CaptionML = ENU = 'Invoicing', ESP = 'Facturación';
+                Caption = 'Invoicing', Comment = 'ESP="Facturación"';
 
                 field(Price; Rec.Price)
                 {
