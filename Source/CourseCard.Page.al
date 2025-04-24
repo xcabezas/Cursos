@@ -70,6 +70,14 @@ page 50101 "IUSUP Course Card"
                 {
 
                 }
+                field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
+                {
+
+                }
+                field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
+                {
+
+                }
             }
         }
     }

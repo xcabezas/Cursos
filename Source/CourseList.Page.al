@@ -15,7 +15,10 @@ page 50100 "IUSUP Course List"
             repeater(RepeaterControl)
             {
                 field("No."; Rec."No.") { }
-                field(Name; Rec.Name) { }
+                field(Name; Rec.Name)
+                {
+                    ApplicationArea = Manufacturing;
+                }
                 field("Duration (hours)"; Rec.Hours) { }
                 field(Price; Rec.Price) { }
                 field("Language Code"; Rec."Language Code") { }

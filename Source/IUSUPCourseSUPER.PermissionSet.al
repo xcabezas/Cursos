@@ -11,4 +11,5 @@ permissionset 50100 "IUSUP CourseSUPER"
         page "IUSUP Course Editions Factbox" = X,
         page "IUSUP Course List" = X,
         page "IUSUP Courses Setup" = X;
+
 }

@@ -28,19 +28,19 @@ table 50100 "IUSUP Course"
                 end;
             end;
         }
-        field(2; "Name"; Text[100])
+        field(2; Name; Text[100])
         {
             Caption = 'Name', Comment = 'ESP="Nombre"';
         }
-        field(3; "Description"; Text[2048])
+        field(3; Description; Text[2048])
         {
             Caption = 'Description', Comment = 'ESP="Descripción"';
         }
-        field(4; "Hours"; Integer)
+        field(4; Hours; Integer)
         {
             Caption = 'Hours', Comment = 'ESP="Horas"';
         }
-        field(5; "Price"; Decimal)
+        field(5; Price; Decimal)
         {
             Caption = 'Price', Comment = 'ESP="Precio"';
         }
@@ -66,6 +66,26 @@ table 50100 "IUSUP Course"
             Caption = 'No. Series', Comment = 'ESP="Nº Serie"';
             Editable = false;
             TableRelation = "No. Series";
+        }
+
+        field(51; "Gen. Prod. Posting Group"; Code[20])
+        {
+            Caption = 'Gen. Prod. Posting Group', Comment = 'ESP="Grupo contable prod. gen."';
+            TableRelation = "Gen. Product Posting Group";
+
+            trigger OnValidate()
+            var
+                GenProdPostingGrp: Record "Gen. Product Posting Group";
+            begin
+                if xRec."Gen. Prod. Posting Group" <> "Gen. Prod. Posting Group" then
+                    if GenProdPostingGrp.ValidateVatProdPostingGroup(GenProdPostingGrp, "Gen. Prod. Posting Group") then
+                        Validate("VAT Prod. Posting Group", GenProdPostingGrp."Def. VAT Prod. Posting Group");
+            end;
+        }
+        field(58; "VAT Prod. Posting Group"; Code[20])
+        {
+            Caption = 'VAT Prod. Posting Group';
+            TableRelation = "VAT Product Posting Group";
         }
 
     }
