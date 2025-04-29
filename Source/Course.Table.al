@@ -3,7 +3,7 @@ table 50100 "IUSUP Course"
 
     Caption = 'Course Table', Comment = 'ESP="Tabla Curso"';
     DataClassification = CustomerContent;
-
+    LookupPageId = "IUSUP Course List";
     fields
     {
         field(1; "No."; Code[20])
@@ -88,6 +88,18 @@ table 50100 "IUSUP Course"
             TableRelation = "VAT Product Posting Group";
         }
 
+    }
+
+    fieldgroups
+    {
+        fieldgroup(DropDown; "No.", Name, Description, Price, Hours, "Language Code")
+        {
+
+        }
+        fieldgroup(Brick; "No.", Name, Price)
+        {
+
+        }
     }
 
     trigger OnInsert()

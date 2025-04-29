@@ -2,6 +2,7 @@ table 50102 "IUSUP Course Edition"
 {
     Caption = 'Course Edition', Comment = 'ESP="Edición Curso"';
     DataClassification = CustomerContent;
+    LookupPageId = "IUSUP Course Editions";
 
     fields
     {
@@ -9,8 +10,9 @@ table 50102 "IUSUP Course Edition"
         {
             Caption = 'Course No.', Comment = 'ESP="Nº Curso"';
             TableRelation = "IUSUP Course";
+
         }
-        field(2; "Edition"; Code[20])
+        field(2; Edition; Code[20])
         {
             Caption = 'Edition', Comment = 'ESP="Edición"';
         }
@@ -28,6 +30,19 @@ table 50102 "IUSUP Course Edition"
         key(PK; "Course No.", Edition)
         {
             Clustered = true;
+
+        }
+    }
+
+    fieldgroups
+    {
+        fieldgroup(DropDown; Edition, "Max. Students", "Start Date")
+        {
+
+        }
+        fieldgroup(Brick; "Max. Students", Edition)
+        {
+
         }
     }
 
