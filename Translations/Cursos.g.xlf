@@ -203,6 +203,11 @@
           <note from="Developer" annotates="general" priority="2">Edición de Curso</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension IUSUP Sales Line - Field IUSUP Course Edition - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2279672712 - Field 3690995997 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1114148978">
+          <source>Course Edition</source>
+          <note from="Developer" annotates="general" priority="2">Edición de Curso</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension IUSUP Sales Shipment Line - Field IUSUP Course Edition - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 2421948441 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Course Type</source>
           <note from="Developer" annotates="general" priority="2">ESP="Tipo Curso"</note>
