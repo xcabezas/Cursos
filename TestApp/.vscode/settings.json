@@ -6,7 +6,7 @@
     "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
     "CRS.ExtensionObjectNamePattern": "<Prefix> <BaseName>",
     "CRS.ObjectNamePrefix": "IUSUP",
-    "CRS.RemovePrefixFromFilename": true,
+    "CRS.RemovePrefixFromFilename": false,
     "al.enableCodeAnalysis": true,
     "al.codeAnalyzers": [
         "${CodeCop}",

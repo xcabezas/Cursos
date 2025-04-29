@@ -198,6 +198,11 @@
           <note from="Developer" annotates="general" priority="2">ESP="Especifica el código de serie que quieres asignar a los cursos"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page IUSUP Courses Setup - Control Course Nos. - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="TableExtension 783951191 - Field 3690995997 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2079186865">
+          <source>Course Edition</source>
+          <note from="Developer" annotates="general" priority="2">Edición de Curso</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension IUSUP Sales Invoice Line - Field IUSUP Course Edition - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 1602876616 - Field 3690995997 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>Course Edition</source>
           <note from="Developer" annotates="general" priority="2">Edición de Curso</note>
