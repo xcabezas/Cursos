@@ -79,6 +79,52 @@ page 50101 "IUSUP Course Card"
 
                 }
             }
+
+        }
+
+    }
+    actions
+    {
+        area(Navigation)
+        {
+            action(CourseEditions)
+            {
+                Caption = 'Editions', Comment = 'ESP="Ediciones"';
+                Image = List;
+                RunObject = page "IUSUP Course Editions";
+                RunPageLink = "Course No." = field("No.");
+            }
+            group(History)
+            {
+                Caption = 'History';
+                Image = History;
+                action("Ledger E&ntries")
+                {
+                    ApplicationArea = Jobs;
+                    Caption = 'Ledger E&ntries';
+                    Image = ResourceLedger;
+                    RunObject = Page "IUSUP Course Ledger Entries";
+                    RunPageLink = "Course No." = field("No.");
+                    RunPageView = sorting("Course No.")
+                                   order(descending);
+                    ShortCutKey = 'Ctrl+F7';
+                    ToolTip = 'View the history of transactions that have been posted for the selected record.';
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Category4)
+            {
+                Caption = 'MyCategory', Comment = 'ESP="MiCategoria"';
+                ShowAs = SplitButton;
+
+                actionref(CourseEditions_Promoted; CourseEditions)
+                {
+                }
+                actionref(LedgerEntries_Promoted; "Ledger E&ntries")
+                { }
+            }
         }
     }
 

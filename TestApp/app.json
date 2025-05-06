@@ -1,6 +1,6 @@
 {
   "id": "edc328db-ae58-4cf7-a8ec-65b23dcf49ab",
-  "name": "TestApp",
+  "name": "Microsoft",
   "publisher": "iusUp",
   "version": "1.0.0.0",
   "brief": " ",
@@ -10,7 +10,26 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+"id": "ef640731-7004-45a1-8787-6305b6133b0e",
+  "name": "Cursos",
+  "publisher": "Default Publisher",
+  "version": "1.0.0.0"
+  },
+  {
+    "id": "5d86850b-0d76-4eca-bd7b-951ad998e997",
+      "name": "Tests-TestLibraries",
+      "publisher": "Microsoft",
+      "version": "25.5.0.0"
+      },
+      {
+        "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+          "name": "Library Assert",
+          "publisher": "Microsoft",
+          "version": "25.5.0.0"
+          }
+],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "25.0.0.0",

@@ -6,6 +6,7 @@ permissionset 50100 "IUSUP CourseSUPER"
         tabledata "IUSUP Course" = RIMD,
         tabledata "IUSUP Course Edition" = RIMD,
         tabledata "IUSUP Course Setup" = RIMD,
+        tabledata "IUSUP Course Ledger Entry" = RMID,
         page "IUSUP Course Card" = X,
         page "IUSUP Course Editions" = X,
         page "IUSUP Course Editions Factbox" = X,
