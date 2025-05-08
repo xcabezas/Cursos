@@ -11,7 +11,7 @@ table 50103 "IUSUP Course Ledger Entry"
         {
             Caption = 'Entry No.';
         }
-        // field(2; "Entry Type"; Enum "Course Journal Line Entry Type")
+        // field(2; "Entry Type"; Enum "Res. Journal Line Entry Type")
         // {
         //     Caption = 'Entry Type';
         // }
@@ -27,6 +27,11 @@ table 50103 "IUSUP Course Ledger Entry"
         {
             Caption = 'Course No.';
             TableRelation = "IUSUP Course";
+        }
+        field(6; "Course Edition"; Code[20])
+        {
+            Caption = 'Course Edition';
+            TableRelation = "IUSUP Course Edition".Edition where("Course No." = field("Course No."));
         }
         field(7; Description; Text[100])
         {
@@ -59,10 +64,6 @@ table 50103 "IUSUP Course Ledger Entry"
         //     Caption = 'Global Dimension 2 Code';
         //     TableRelation = "Dimension Value".Code where("Global Dimension No." = const(2));
         // }
-        field(23; "Journal Batch Name"; Code[10])
-        {
-            Caption = 'Journal Batch Name';
-        }
         field(24; "Reason Code"; Code[10])
         {
             Caption = 'Reason Code';
@@ -183,41 +184,37 @@ table 50103 "IUSUP Course Ledger Entry"
         exit(FindRecordManagement.GetLastEntryIntFieldValue(Rec, FieldNo("Entry No.")))
     end;
 
-    // procedure CopyFromResJnlLine(ResJnlLine: Record "Course Journal Line")
-    // begin
-    //     // "Entry Type" := ResJnlLine."Entry Type";
-    //     "Document No." := ResJnlLine."Document No.";
-    //     "External Document No." := ResJnlLine."External Document No.";
-    //     // "Order Type" := ResJnlLine."Order Type";
-    //     // "Order No." := ResJnlLine."Order No.";
-    //     // "Order Line No." := ResJnlLine."Order Line No.";
-    //     "Posting Date" := ResJnlLine."Posting Date";
-    //     "Document Date" := ResJnlLine."Document Date";
-    //     "Course No." := ResJnlLine."Course No.";
-    //     Description := ResJnlLine.Description;
-    //     Quantity := ResJnlLine.Quantity;
-    //     "Unit Price" := ResJnlLine."Unit Price";
-    //     "Total Price" := ResJnlLine."Total Price";
-    //     // "Global Dimension 1 Code" := ResJnlLine."Shortcut Dimension 1 Code";
-    //     // "Global Dimension 2 Code" := ResJnlLine."Shortcut Dimension 2 Code";
-    //     // "Dimension Set ID" := ResJnlLine."Dimension Set ID";
-    //     "Journal Batch Name" := ResJnlLine."Journal Batch Name";
-    //     "Reason Code" := ResJnlLine."Reason Code";
-    //     "Gen. Bus. Posting Group" := ResJnlLine."Gen. Bus. Posting Group";
-    //     "Gen. Prod. Posting Group" := ResJnlLine."Gen. Prod. Posting Group";
+    procedure CopyFromCourseJournalLine(CourseJournalLine: Record "IUSUP Course Journal Line")
+    begin
+        // "Entry Type" := ResJnlLine."Entry Type";
+        "Document No." := CourseJournalLine."Document No.";
+        "External Document No." := CourseJournalLine."External Document No.";
+        "Posting Date" := CourseJournalLine."Posting Date";
+        "Document Date" := CourseJournalLine."Document Date";
+        "Course No." := CourseJournalLine."Course No.";
+        "Course Edition" := CourseJournalLine."Course Edition";
+        Description := CourseJournalLine.Description;
+        Quantity := CourseJournalLine.Quantity;
+        "Unit Price" := CourseJournalLine."Unit Price";
+        "Total Price" := CourseJournalLine."Total Price";
+        // "Global Dimension 1 Code" := ResJnlLine."Shortcut Dimension 1 Code";
+        // "Global Dimension 2 Code" := ResJnlLine."Shortcut Dimension 2 Code";
+        // "Dimension Set ID" := ResJnlLine."Dimension Set ID";        
+        "Reason Code" := CourseJournalLine."Reason Code";
+        "Gen. Bus. Posting Group" := CourseJournalLine."Gen. Bus. Posting Group";
+        "Gen. Prod. Posting Group" := CourseJournalLine."Gen. Prod. Posting Group";
+        "Customer No." := CourseJournalLine."Customer No.";
 
-    //     "Customer No." := ResJnlLine."Source No.";
-
-    //     OnAfterCopyFromResJnlLine(Rec, ResJnlLine);
-    // end;
+        OnAfterCopyFromCourseJournalLine(Rec, CourseJournalLine);
+    end;
 
     // procedure ShowDimensions()
     // begin
     //     DimMgt.ShowDimensionSet("Dimension Set ID", StrSubstNo('%1 %2', TableCaption(), "Entry No."));
     // end;
 
-    // [IntegrationEvent(false, false)]
-    // procedure OnAfterCopyFromResJnlLine(var ResLedgerEntry: Record "Course Ledger Entry"; ResJournalLine: Record "Course Journal Line")
-    // begin
-    // end;
+    [IntegrationEvent(false, false)]
+    procedure OnAfterCopyFromCourseJournalLine(var CourseLedgerEntry: Record "IUSUP Course Ledger Entry"; CourseJournalLine: Record "IUSUP Course Journal Line")
+    begin
+    end;
 }
