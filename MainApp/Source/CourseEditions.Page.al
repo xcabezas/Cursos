@@ -1,7 +1,7 @@
-page 50103 "IUSUP Course Editions Factbox"
+page 50104 "IUSUP Course Editions"
 {
     Caption = 'Course Editions', Comment = 'ESP="Ediciones curso"';
-    PageType = ListPart;
+    PageType = List;
     ApplicationArea = All;
     UsageCategory = None;
     SourceTable = "IUSUP Course Edition";
@@ -19,6 +19,7 @@ page 50103 "IUSUP Course Editions Factbox"
                 field(Edition; Rec.Edition) { }
                 field("Start Date"; Rec."Start Date") { }
                 field("Max. Students"; Rec."Max. Students") { }
+                field("Sales (Qty.)"; Rec."Sales (Qty.)") { }
             }
         }
     }

@@ -24,6 +24,12 @@ table 50102 "IUSUP Course Edition"
         {
             Caption = 'Max. Students', Comment = 'ESP="Nº Max. Alumnos"';
         }
+        field(5; "Sales (Qty.)"; Decimal)
+        {
+            Caption = 'Sales (Qty.)', Comment = 'ESP="Ventas (Capacidad)"';
+            FieldClass = FlowField;
+            CalcFormula = sum("IUSUP Course Ledger Entry".Quantity);
+        }
     }
     keys
     {
