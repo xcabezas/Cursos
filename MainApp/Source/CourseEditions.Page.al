@@ -14,7 +14,7 @@ page 50104 "IUSUP Course Editions"
             {
                 field("Course No."; Rec."Course No.")
                 {
-                    Visible = false;
+                    //Visible = false;
                 }
                 field(Edition; Rec.Edition) { }
                 field("Start Date"; Rec."Start Date") { }

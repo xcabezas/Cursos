@@ -78,6 +78,11 @@
           <note from="Developer" annotates="general" priority="2">ESP="Nº Curso"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Course No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3690995997 - Field 995090288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Filter</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Filtro Fecha"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Date Filter - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3690995997 - Field 2511900496 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Edition</source>
           <note from="Developer" annotates="general" priority="2">ESP="Edición"</note>

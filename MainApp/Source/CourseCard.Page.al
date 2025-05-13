@@ -93,6 +93,10 @@ page 50101 "IUSUP Course Card"
                 Image = List;
                 RunObject = page "IUSUP Course Editions";
                 RunPageLink = "Course No." = field("No.");
+                RunPageView = sorting("Course No.")
+                               order(descending);
+                ShortcutKey = 'Ctrl+F7';
+                ToolTip = 'View the editions of the selected course.';
             }
             group(History)
             {

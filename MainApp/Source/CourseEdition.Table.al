@@ -1,6 +1,6 @@
 table 50102 "IUSUP Course Edition"
 {
-    Caption = 'Course Edition', Comment = 'ESP="Edición Curso"';
+    Caption = 'Course Edition', Comment = 'ESP="Edición curso"';
     DataClassification = CustomerContent;
     LookupPageId = "IUSUP Course Editions";
 
@@ -8,9 +8,8 @@ table 50102 "IUSUP Course Edition"
     {
         field(1; "Course No."; Code[20])
         {
-            Caption = 'Course No.', Comment = 'ESP="Nº Curso"';
+            Caption = 'Course No.', Comment = 'ESP="Nº curso"';
             TableRelation = "IUSUP Course";
-
         }
         field(2; Edition; Code[20])
         {
@@ -18,38 +17,42 @@ table 50102 "IUSUP Course Edition"
         }
         field(3; "Start Date"; Date)
         {
-            Caption = 'Start Date', Comment = 'ESP="Fecha Inicio"';
+            Caption = 'Start Date', Comment = 'ESP="Fecha inicio"';
         }
         field(4; "Max. Students"; Integer)
         {
-            Caption = 'Max. Students', Comment = 'ESP="Nº Max. Alumnos"';
+            Caption = 'Max. Students', Comment = 'ESP="Nº máx. alumnos"';
+            BlankZero = true;
         }
+#pragma warning disable AA0232
         field(5; "Sales (Qty.)"; Decimal)
         {
-            Caption = 'Sales (Qty.)', Comment = 'ESP="Ventas (Capacidad)"';
+            Caption = 'Sales (Qty.)', Comment = 'ESP="Ventas (Cdad.)"';
             FieldClass = FlowField;
-            CalcFormula = sum("IUSUP Course Ledger Entry".Quantity);
+            CalcFormula = sum("IUSUP Course Ledger Entry".Quantity where("Course No." = field("Course No."), "Course Edition" = field(Edition), "Posting Date" = field("Date Filter")));
+            Editable = false;
+            BlankZero = true;
+            DecimalPlaces = 0 : 5;
+        }
+#pragma warning restore
+        field(6; "Date Filter"; Date)
+        {
+            Caption = 'Date Filter', Comment = 'ESP="Filtro fecha"';
+            FieldClass = FlowFilter;
         }
     }
+
     keys
     {
         key(PK; "Course No.", Edition)
         {
             Clustered = true;
-
         }
     }
 
     fieldgroups
     {
-        fieldgroup(DropDown; Edition, "Max. Students", "Start Date")
-        {
-
-        }
-        fieldgroup(Brick; "Max. Students", Edition)
-        {
-
-        }
+        fieldgroup(DropDown; Edition, "Max. Students", "Start Date") { }
+        fieldgroup(Brick; Edition, "Max. Students", "Start Date") { }
     }
-
 }
