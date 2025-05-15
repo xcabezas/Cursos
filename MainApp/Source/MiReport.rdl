@@ -22,40 +22,6 @@
       <rd:DataSourceID>4e27ed0d-a148-47f8-9389-c7c5b1710fa7</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="CourseNo">
-          <DataField>CourseNo</DataField>
-        </Field>
-        <Field Name="CourseName">
-          <DataField>CourseName</DataField>
-        </Field>
-        <Field Name="CoursePrice">
-          <DataField>CoursePrice</DataField>
-        </Field>
-        <Field Name="CoursePriceFormat">
-          <DataField>CoursePriceFormat</DataField>
-        </Field>
-        <Field Name="CourseEdition">
-          <DataField>CourseEdition</DataField>
-        </Field>
-        <Field Name="CourseEditionSales__Qty__">
-          <DataField>CourseEditionSales__Qty__</DataField>
-        </Field>
-        <Field Name="CourseEditionSales__Qty__Format">
-          <DataField>CourseEditionSales__Qty__Format</DataField>
-        </Field>
-        <Field Name="CourseEditionMax_students">
-          <DataField>CourseEditionMax_students</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -309,12 +275,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -354,4 +314,38 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CourseNo">
+          <DataField>CourseNo</DataField>
+        </Field>
+        <Field Name="CourseName">
+          <DataField>CourseName</DataField>
+        </Field>
+        <Field Name="CoursePrice">
+          <DataField>CoursePrice</DataField>
+        </Field>
+        <Field Name="CoursePriceFormat">
+          <DataField>CoursePriceFormat</DataField>
+        </Field>
+        <Field Name="CourseEdition">
+          <DataField>CourseEdition</DataField>
+        </Field>
+        <Field Name="CourseEditionSales__Qty__">
+          <DataField>CourseEditionSales__Qty__</DataField>
+        </Field>
+        <Field Name="CourseEditionSales__Qty__Format">
+          <DataField>CourseEditionSales__Qty__Format</DataField>
+        </Field>
+        <Field Name="CourseEditionMax_students">
+          <DataField>CourseEditionMax_students</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

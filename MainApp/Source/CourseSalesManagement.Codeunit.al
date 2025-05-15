@@ -98,4 +98,38 @@ codeunit 50100 "IUSUPCourse - Sales Management"
     local procedure OnAfterPostCourseJournalLine(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; CourseJournalLine: Record "IUSUP Course Journal Line")
     begin
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnAfterValidateEvent, Quantity, false, false)]
+    local procedure OnAfterValidateEvent_Quantity(var Rec: Record "Sales Line")
+    begin
+        CheckCourseEditionMaxStudents(Rec);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnAfterValidateEvent, "IUSUP Course Edition", false, false)]
+    local procedure OnAfterValidateEvent_CourseEdition(var Rec: Record "Sales Line")
+    begin
+        CheckCourseEditionMaxStudents(Rec);
+    end;
+
+    local procedure CheckCourseEditionMaxStudents(var SalesLine: Record "Sales Line")
+    var
+        CourseEdition: Record "IUSUP Course Edition";
+        // MaxtudentsExceedeErr: TextConst ENU = 'With the previous sales (%1) plus the current sale (%2) for course %3 and edition %4, the maximum number of students (%5) would be exceeded',
+        //                                 ESP = 'Con las ventas previas (%1) más la venta actual (%2) para el curso %3 y edición %4, se superaría el número máximo de alumnos (%5)';
+        MaxtudentsExceedeErr: Label 'With the previous sales (%1) plus the current sale (%2) for course %3 and edition %4, the maximum number of students (%5) would be exceeded',
+                                Comment = 'ESP="Con las ventas previas (%1) más la venta actual (%2) para el curso %3 y edición %4, se superaría el número máximo de alumnos (%5)"';
+    begin
+        if SalesLine.Type <> SalesLine.Type::"IUSUP Course" then
+            exit;
+
+        if SalesLine."IUSUP Course Edition" = '' then
+            exit;
+
+        CourseEdition.SetLoadFields("Max. Students", CourseEdition."Sales (Qty.)");
+        CourseEdition.Get(SalesLine."No.", SalesLine."IUSUP Course Edition");
+        CourseEdition.CalcFields("Sales (Qty.)");
+
+        if (CourseEdition."Sales (Qty.)" + SalesLine.Quantity) > CourseEdition."Max. Students" then
+            Message(MaxtudentsExceedeErr, CourseEdition."Sales (Qty.)", SalesLine.Quantity, SalesLine."No.", SalesLine."IUSUP Course Edition", CourseEdition."Max. Students");
+    end;
 }

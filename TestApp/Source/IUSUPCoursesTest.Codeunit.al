@@ -3,12 +3,16 @@ codeunit 50140 "IUSUP Courses Test"
     Subtype = Test;
     TestPermissions = Disabled;
 
+    // [Test]
+    // procedure Test001()
+    // begin
+    // end;
 
-    [Test]
-    procedure Test001()
-    begin
-
-    end;
+    // [Test]
+    // procedure Test002()
+    // begin
+    //     Error('Un error del test');
+    // end;
 
     [Test]
     procedure Test003()
@@ -17,19 +21,45 @@ codeunit 50140 "IUSUP Courses Test"
         Value1: Decimal;
         Value2: Decimal;
         Result: Decimal;
-
     begin
+        // [Scenario] Una función llamada GetMin devuelve el menor de 2 valores numéricos
 
+        // [Given] 2 valores numéricos
         Value1 := 1;
         Value2 := 2;
+
+        // [When] se realice la llamada a la función GetMin
         Result := IUSUPMin.GetMin(Value1, Value2);
 
+        // [Then] El resultado tiene que ser el más pequeño de los valores numéricos
         if Result <> Value1 then
             Error('El resultado no es correcto');
     end;
 
     [Test]
-    procedure SelectingACourseOnASAlesLine();
+    procedure Test004()
+    var
+        IUSUPMin: Codeunit IUSUPMin;
+        Value1: Decimal;
+        Value2: Decimal;
+        Result: Decimal;
+    begin
+        // [Scenario] Una función llamada GetMin devuelve el menor de 2 valores numéricos
+
+        // [Given] 2 valores numéricos
+        Value1 := 20;
+        Value2 := 10;
+
+        // [When] se realice la llamada a la función GetMin
+        Result := IUSUPMin.GetMin(Value1, Value2);
+
+        // [Then] El resultado tiene que ser el más pequeño de los valores numéricos
+        if Result <> Value2 then
+            Error('El resultado no es correcto');
+    end;
+
+    [Test]
+    procedure SelectingACourseOnASalesLine()
     var
         Course: Record "IUSUP Course";
         SalesHeader: Record "Sales Header";
@@ -44,19 +74,18 @@ codeunit 50140 "IUSUP Courses Test"
         //         Un documento de venta
         Course := LibraryCourse.CreateCourse();
 
-
         LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Invoice, '');
         LibrarySales.CreateSalesLineSimple(SalesLine, SalesHeader);
-        // [When] seleccionamos el curso en el documento de venta 
 
+        // [When] seleccionamos el curso en el documento de venta
         SalesLine.Validate(Type, "Sales Line Type"::"IUSUP Course");
         SalesLine.Validate("No.", Course."No.");
 
-        // [Then] la linea de venta tiene la Descripción, precio y grupos contables especifícados en el curso 
-        LibraryAssert.AreEqual(Course.Name, SalesLine.Description, 'La descripcion no es correcta');
-        LibraryAssert.AreEqual(Course.Price, SalesLine."Unit Price", 'El precio no es correcta');
-        LibraryAssert.AreEqual(Course."Gen. Prod. Posting Group", SalesLine."Gen. Prod. Posting Group", 'El grupo no es correcta');
-        LibraryAssert.AreEqual(Course."VAT Prod. Posting Group", SalesLine."VAT Prod. Posting Group", 'El IVA no es correcta');
+        // [Then] la línea de venta tiene la Descripción, Precio y Grupos contables especificados en el curso
+        LibraryAssert.AreEqual(Course.Name, SalesLine.Description, 'La descripción no es correcta');
+        LibraryAssert.AreEqual(Course.Price, SalesLine."Unit Price", 'El precio no es correcto');
+        LibraryAssert.AreEqual(Course."Gen. Prod. Posting Group", SalesLine."Gen. Prod. Posting Group", 'El grupo registro producto no es correcto');
+        LibraryAssert.AreEqual(Course."VAT Prod. Posting Group", SalesLine."VAT Prod. Posting Group", 'El grupo registro IVA prod. no es correcto');
     end;
 
     [Test]
@@ -153,36 +182,33 @@ codeunit 50140 "IUSUP Courses Test"
 
     [Test]
     [HandlerFunctions('MessageMaxStudentExceeded')]
-
     procedure CheckCourseEdition()
     var
         Course: Record "IUSUP Course";
         CourseEdition: Record "IUSUP Course Edition";
         SalesHeader: Record "Sales Header";
         SalesLine: Record "Sales Line";
-        SalesShipmentLine: Record "Sales Shipment Line";
-        CourseLedgerEntry: Record "IUSUP Course Ledger Entry";
         LibrarySales: Codeunit "Library - Sales";
-        LibraryAssert: Codeunit "Library Assert";
         LibraryCourse: Codeunit "IUSUP Library - Course";
-
     begin
-        // [Scenario] Al crear un curso, se crea una edición por defecto
+        // [Scenario] Si la venta de una edición, conjuntamente con las ventas previas, llega al número máximo de alumnos, el sistema tiene que mostrar una notificación
 
         // [Given] Un curso
+        //         Una edición
+        //         Una ventas previas para el curso y edición
+        //         Un pedido de venta para el curso y edición
         Course := LibraryCourse.CreateCourse();
         CourseEdition := LibraryCourse.CreateEdition(Course);
+        CourseEdition."Max. Students" := 10;
+        CourseEdition.Modify(true);
 
-        // [When] Creamos la edición por defecto
         LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Invoice, '');
         LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 2);
         SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
         SalesLine.Modify(true);
-        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Order, '');
         LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 3);
         SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
         SalesLine.Modify(true);
-        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Order, '');
         LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 4);
         SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
         SalesLine.Modify(true);
@@ -193,18 +219,21 @@ codeunit 50140 "IUSUP Courses Test"
         LibrarySales.CreateSalesLineSimple(SalesLine, SalesHeader);
         SalesLine.Validate(Type, "Sales Line Type"::"IUSUP Course");
         SalesLine.Validate("No.", Course."No.");
-
-        SalesLine.Validate(Quantity, 12);
-
-        // [Then] La edición es correcta
+        SalesLine.Validate(Quantity, 2);
+        // [when] se selecciona la edición en el pedido de venta
         SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
+
+        // [Then] el sistema tiene que mostrar una notificación
     end;
+
 
     [MessageHandler]
     procedure MessageMaxStudentExceeded(Message: Text[1024])
     var
         LibraryAssert: Codeunit "Library Assert";
+        MaxtudentsExceedeErr: Label 'the maximum number of students',
+                                Comment = 'ESP="se superaría el número máximo de alumnos"';
     begin
-        LibraryAssert.IsTrue(Message.Contains('Con las ventas previas'), 'El mensaje no es correcto');
+        LibraryAssert.IsTrue(Message.Contains(MaxtudentsExceedeErr), 'El mensaje no es correcto');
     end;
 }
