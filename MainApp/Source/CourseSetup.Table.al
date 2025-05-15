@@ -1,3 +1,6 @@
+namespace ClipPlatform.Courses.Setup;
+
+using Microsoft.Foundation.NoSeries;
 table 50101 "IUSUP Course Setup"
 {
     Caption = 'Courses Setup', Comment = 'ESP="Configuración Cursos"';

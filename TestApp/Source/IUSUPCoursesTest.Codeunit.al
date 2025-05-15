@@ -3,6 +3,7 @@ codeunit 50140 "IUSUP Courses Test"
     Subtype = Test;
     TestPermissions = Disabled;
 
+
     [Test]
     procedure Test001()
     begin
@@ -98,7 +99,62 @@ codeunit 50140 "IUSUP Courses Test"
     end;
 
     [Test]
-    procedure CourseSalesPostingLedgerEntry();
+    procedure CourseSalesPostingLedgerEntry()
+    var
+        Course: Record "IUSUP Course";
+        CourseEdition: Record "IUSUP Course Edition";
+        SalesHeader: Record "Sales Header";
+        SalesLine: Record "Sales Line";
+        CourseLedgerEntry: Record "IUSUP Course Ledger Entry";
+        LibrarySales: Codeunit "Library - Sales";
+        LibraryAssert: Codeunit "Library Assert";
+        LibraryCourse: Codeunit "IUSUP Library - Course";
+        DocumentNo: Code[20];
+    begin
+        // [Scenario] Al registrar un documento de venta (factura o abono), el sistema deba crear un movimiento de curso
+
+        // [Given] Un curso
+        //         Una edición
+        //         Un pedido de venta para el curso y edición
+        Course := LibraryCourse.CreateCourse();
+        CourseEdition := LibraryCourse.CreateEdition(Course);
+        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Order, '');
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 1);
+        SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
+        SalesLine.Modify(true);
+
+        // [When] Registremos el albarán
+        DocumentNo := LibrarySales.PostSalesDocument(SalesHeader, true, false);
+        // [Then] No se ha creado movimiento de curso
+        CourseLedgerEntry.SetRange("Document No.", DocumentNo);
+        LibraryAssert.AreEqual(0, CourseLedgerEntry.Count(), 'El registro del albarán no debe crear movimientos de curso');
+
+        // [When] Registremos la factura
+        DocumentNo := LibrarySales.PostSalesDocument(SalesHeader, false, true);
+        // [Then] Se ha creado el movimiento de curso
+        CourseLedgerEntry.SetRange("Document No.", DocumentNo);
+        LibraryAssert.AreEqual(1, CourseLedgerEntry.Count(), 'El registro de la factura tiene que crear movimiento de curso');
+
+        CourseLedgerEntry.FindFirst();
+        LibraryAssert.AreEqual(SalesHeader."Posting Date", CourseLedgerEntry."Posting Date", 'La fecha registro no es correcta');
+        LibraryAssert.AreEqual(SalesLine."No.", CourseLedgerEntry."Course No.", 'El Nº curso no es correcto');
+        LibraryAssert.AreEqual(SalesLine."IUSUP Course Edition", CourseLedgerEntry."Course Edition", 'La edición no es correcta');
+        LibraryAssert.AreEqual(SalesLine.Description, CourseLedgerEntry.Description, 'La descripción no es correcta');
+        LibraryAssert.AreEqual(SalesLine.Quantity, CourseLedgerEntry.Quantity, 'La cantidad no es correcta');
+        LibraryAssert.AreEqual(SalesLine."Unit Price", CourseLedgerEntry."Unit Price", 'El precio no es correcto');
+        LibraryAssert.AreEqual(SalesLine."Line Amount", CourseLedgerEntry."Total Price", 'El precio total no es correcto');
+        LibraryAssert.AreEqual(SalesLine."Return Reason Code", CourseLedgerEntry."Reason Code", 'El motivo de devolución no es correcto');
+        LibraryAssert.AreEqual(SalesLine."Gen. Bus. Posting Group", CourseLedgerEntry."Gen. Bus. Posting Group", 'El grupo contable negocio no es correcto');
+        LibraryAssert.AreEqual(SalesLine."Gen. Prod. Posting Group", CourseLedgerEntry."Gen. Prod. Posting Group", 'El grupo contable producto no es correcto');
+        LibraryAssert.AreEqual(SalesHeader."Document Date", CourseLedgerEntry."Document Date", 'La fecha documento no es correcta');
+        LibraryAssert.AreEqual(SalesHeader."External Document No.", CourseLedgerEntry."External Document No.", 'El Nº documento externo no es correcto');
+        LibraryAssert.AreEqual(SalesHeader."Sell-to Customer No.", CourseLedgerEntry."Customer No.", 'El cliente no es correcto');
+    end;
+
+    [Test]
+    [HandlerFunctions('MessageMaxStudentExceeded')]
+
+    procedure CheckCourseEdition()
     var
         Course: Record "IUSUP Course";
         CourseEdition: Record "IUSUP Course Edition";
@@ -109,63 +165,46 @@ codeunit 50140 "IUSUP Courses Test"
         LibrarySales: Codeunit "Library - Sales";
         LibraryAssert: Codeunit "Library Assert";
         LibraryCourse: Codeunit "IUSUP Library - Course";
-        DocumentNo: Code[20];
+
     begin
-        // [Scenario] 
+        // [Scenario] Al crear un curso, se crea una edición por defecto
 
-        // [Given] Setup: 
-
-        // [When] Exercise: 
-
-        // [Then] Verify: 
+        // [Given] Un curso
         Course := LibraryCourse.CreateCourse();
         CourseEdition := LibraryCourse.CreateEdition(Course);
-        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Order, '');
-        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 1);
+
+        // [When] Creamos la edición por defecto
+        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Invoice, '');
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 2);
         SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
         SalesLine.Modify(true);
-
-        // [When] Registremos el albarán
-        DocumentNo := LibrarySales.PostSalesDocument(SalesHeader, true, false);
-        // [Then] La edición es correcta en la factura
-        CourseLedgerEntry.SetRange("Document No.", DocumentNo);
-        LibraryAssert.AreEqual(0, CourseLedgerEntry.Count(), 'El registro del albaran no debe de crear movimiento');
-
-        DocumentNo := LibrarySales.PostSalesDocument(SalesHeader, false, true);
-
-        CourseLedgerEntry.SetRange("Document No.", DocumentNo);
-        LibraryAssert.AreEqual(0, CourseLedgerEntry.Count(), 'El registro del albaran tiene que crear movimiento de producto');
-
-        CourseLedgerEntry.FindFirst();
-        LibraryAssert.AreEqual(SalesHeader."Posting Date", CourseLedgerEntry."Posting Date", 'La fecharegistro no es correcta');
-
-        LibraryAssert.AreEqual(SalesLine."No.", CourseLedgerEntry."Course No.", 'El Nº curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine."IUSUP Course Edition", CourseLedgerEntry."Course Edition", 'La Edicion curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine.Description, CourseLedgerEntry.Description, 'La Descripcion curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine.Quantity, CourseLedgerEntry.Quantity, 'La Quantity curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine."Unit Price", CourseLedgerEntry."Unit Price", 'La Unit Price curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine."Line Amount", CourseLedgerEntry."Total Price", 'La Total Price curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine."Return Reason Code", CourseLedgerEntry."Reason Code", 'La Reason Code curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine."Gen. Bus. Posting Group", CourseLedgerEntry."Gen. Bus. Posting Group", 'La Gen. Bus. Posting Groupe curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesLine."Gen. Prod. Posting Group", CourseLedgerEntry."Gen. Prod. Posting Group", 'La Gen. Prod. Posting Group curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesHeader."Document Date", CourseLedgerEntry."Document Date", 'La Document Date curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesHeader."External Document No.", CourseLedgerEntry."External Document No.", 'La External Document No. curso no es correcto');
-
-        LibraryAssert.AreEqual(SalesHeader."Sell-to Customer No.", CourseLedgerEntry."Customer No.", 'La Customer No. curso no es correcto');
+        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Order, '');
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 3);
+        SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
+        SalesLine.Modify(true);
+        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Order, '');
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, "Sales Line Type"::"IUSUP Course", Course."No.", 4);
+        SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
+        SalesLine.Modify(true);
+        LibrarySales.PostSalesDocument(SalesHeader, true, true);
 
 
+        LibrarySales.CreateSalesHeader(SalesHeader, "Sales Document Type"::Invoice, '');
+        LibrarySales.CreateSalesLineSimple(SalesLine, SalesHeader);
+        SalesLine.Validate(Type, "Sales Line Type"::"IUSUP Course");
+        SalesLine.Validate("No.", Course."No.");
 
+        SalesLine.Validate(Quantity, 12);
 
+        // [Then] La edición es correcta
+        SalesLine.Validate("IUSUP Course Edition", CourseEdition.Edition);
+    end;
 
+    [MessageHandler]
+    procedure MessageMaxStudentExceeded(Message: Text[1024])
+    var
+        LibraryAssert: Codeunit "Library Assert";
+    begin
+        LibraryAssert.IsTrue(Message.Contains('Con las ventas previas'), 'El mensaje no es correcto');
     end;
 }

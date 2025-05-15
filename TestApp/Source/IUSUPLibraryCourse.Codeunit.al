@@ -22,16 +22,14 @@ codeunit 50142 "IUSUP Library - Course"
 
     internal procedure CreateEdition(Course: Record "IUSUP Course") CourseEdition: Record "IUSUP Course Edition"
     var
-
         LibraryRandom: Codeunit "Library - Random";
     begin
         CourseEdition.Init();
-        ;
         CourseEdition.Validate("Course No.", Course."No.");
         CourseEdition.Validate(Edition, LibraryRandom.RandText(MaxStrLen(CourseEdition.Edition)));
         CourseEdition.Validate("Max. Students", LibraryRandom.RandIntInRange(10, 20));
-        CourseEdition.Validate("Start Date", LibraryRandom.RandDate(20));
-
+        CourseEdition.Validate("Start Date", LibraryRandom.RandDateFrom(Today(), 30));
+        CourseEdition.Insert(true);
     end;
 
     local procedure CoursesNoSeriesSetup()

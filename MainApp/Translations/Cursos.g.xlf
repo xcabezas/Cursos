@@ -3,6 +3,21 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="Cursos">
     <body>
       <group id="body">
+        <trans-unit id="Table 2937389772 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Courses Setup</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Configuración Cursos"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2937389772 - Field 3345900843 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Course Nos.</source>
+          <note from="Developer" annotates="general" priority="2">ESP="Nº Cursos"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Setup - Field Course Nos. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2937389772 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Setup - Field Primary Key - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3458841569 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Course Table</source>
           <note from="Developer" annotates="general" priority="2">ESP="Tabla Curso"</note>
@@ -70,17 +85,17 @@
         </trans-unit>
         <trans-unit id="Table 3690995997 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Course Edition</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Edición Curso"</note>
+          <note from="Developer" annotates="general" priority="2">ESP="Edición curso"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3690995997 - Field 1667959142 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Course No.</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Nº Curso"</note>
+          <note from="Developer" annotates="general" priority="2">ESP="Nº curso"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Course No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3690995997 - Field 995090288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Date Filter</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Filtro Fecha"</note>
+          <note from="Developer" annotates="general" priority="2">ESP="Filtro fecha"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Date Filter - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3690995997 - Field 2511900496 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -90,17 +105,17 @@
         </trans-unit>
         <trans-unit id="Table 3690995997 - Field 495568652 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Max. Students</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Nº Max. Alumnos"</note>
+          <note from="Developer" annotates="general" priority="2">ESP="Nº máx. alumnos"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Max. Students - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3690995997 - Field 3986305445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales (Qty.)</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Ventas (Capacidad)"</note>
+          <note from="Developer" annotates="general" priority="2">ESP="Ventas (Cdad.)"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Sales (Qty.) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3690995997 - Field 474480784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Start Date</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Fecha Inicio"</note>
+          <note from="Developer" annotates="general" priority="2">ESP="Fecha inicio"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Edition - Field Start Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3080755228 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -283,21 +298,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Ledger Entry - Field Unit Price - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 2937389772 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Courses Setup</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Configuración Cursos"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Setup - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2937389772 - Field 3345900843 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Course Nos.</source>
-          <note from="Developer" annotates="general" priority="2">ESP="Nº Cursos"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Setup - Field Course Nos. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2937389772 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Primary Key</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table IUSUP Course Setup - Field Primary Key - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 2409962701 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Course Card</source>
           <note from="Developer" annotates="general" priority="2">ESP="Ficha Curso"</note>
@@ -347,6 +347,11 @@
           <source>Type (Enum)</source>
           <note from="Developer" annotates="general" priority="2">ESP="Tipo (Enum)"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page IUSUP Course Card - Control Type (Enum) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2409962701 - Action 2360815950 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View the editions of the selected course.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page IUSUP Course Card - Action CourseEditions - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2409962701 - Action 2360815950 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Editions</source>
