@@ -42,6 +42,7 @@ page 50106 "IUSUP Course Ledger Entries"
                     ApplicationArea = Jobs;
                     ToolTip = 'Specifies the Edition of the Course.';
                 }
+
                 field(Description; Rec.Description)
                 {
                     ApplicationArea = Jobs;

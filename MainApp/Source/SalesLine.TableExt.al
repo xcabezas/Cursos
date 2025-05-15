@@ -49,9 +49,11 @@ tableextension 50100 "IUSUP Sales Line" extends "Sales Line"
 
         CourseLedgerentry.SetRange("Course No.", Rec."No.");
         CourseLedgerentry.SetRange("Course Edition", Rec."IUSUP Course Edition");
+        CourseLedgerentry.SetLoadFields(Quantity);
         if CourseLedgerentry.FindSet() then
             repeat
                 PreviousSales := PreviousSales + CourseLedgerentry.Quantity;
+
             until CourseLedgerentry.Next() = 0;
 
         if (PreviousSales + Rec.Quantity) > CourseEdition."Max. Students" then
