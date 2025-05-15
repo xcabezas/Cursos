@@ -9,15 +9,15 @@ report 50101 "IUSUP Course Information"
     {
         dataitem(Course; "IUSUP Course")
         {
-            column(No_; "No.")
+            column(CourseNo; "No.")
             {
 
             }
-            column(Name; Name)
+            column(CourseName; Name)
             {
 
             }
-            column(Price; Price)
+            column(CoursePrice; Price)
             {
 
             }
@@ -25,15 +25,15 @@ report 50101 "IUSUP Course Information"
             {
                 DataItemLinkReference = Course;
                 dataitemlink = "Course No." = field("No.");
-                column(Edition; Edition)
+                column(CourseEdition; Edition)
                 {
 
                 }
-                column(Sales__Qty__; "sales (Qty.)")
+                column(CourseEditionSales__Qty__; "sales (Qty.)")
                 {
 
                 }
-                column(Max_students; "Max. students")
+                column(CourseEditionMax_students; "Max. students")
                 {
 
                 }
@@ -65,7 +65,7 @@ report 50101 "IUSUP Course Information"
         layout(RDLC)
         {
             Type = RDLC;
-            LayoutFile = 'Source/mySpreadsheet.rdl';
+            LayoutFile = 'Source/MiReport.rdl';
         }
     }
 
