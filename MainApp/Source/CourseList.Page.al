@@ -15,11 +15,8 @@ page 50100 "IUSUP Course List"
             repeater(RepeaterControl)
             {
                 field("No."; Rec."No.") { }
-                field(Name; Rec.Name)
-                {
-                    ApplicationArea = Manufacturing;
-                }
-                field("Duration (hours)"; Rec.Hours) { }
+                field(Name; Rec.Name) { }
+                field("Duration (hours)"; Rec.Price) { }
                 field(Price; Rec.Price) { }
                 field("Language Code"; Rec."Language Code") { }
                 field("Type (Enum)"; Rec."Type (Enum)") { }
@@ -41,6 +38,7 @@ page 50100 "IUSUP Course List"
             action(CourseEditions)
             {
                 Caption = 'Editions', Comment = 'ESP="Ediciones"';
+                Image = List;
                 RunObject = page "IUSUP Course Editions";
                 RunPageLink = "Course No." = field("No.");
             }
@@ -55,11 +53,18 @@ page 50100 "IUSUP Course List"
                     Image = ResourceLedger;
                     RunObject = Page "IUSUP Course Ledger Entries";
                     RunPageLink = "Course No." = field("No.");
+#pragma Warning Disable AL0254
                     RunPageView = sorting("Course No.")
                                   order(descending);
+#pragma Warning Restore
                     ShortCutKey = 'Ctrl+F7';
                     ToolTip = 'View the history of transactions that have been posted for the selected record.';
                 }
+            }
+            action(ImportCourses)
+            {
+                RunObject = xmlport "IUSUP Import Course";
+                Image = Import;
             }
         }
         area(Promoted)
@@ -74,6 +79,9 @@ page 50100 "IUSUP Course List"
                 }
                 actionref(LedgerEntries_Promoted; "Ledger E&ntries")
                 { }
+                actionref(ImportCourses_Promoted; ImportCourses)
+                {
+                }
             }
         }
     }

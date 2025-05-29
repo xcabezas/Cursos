@@ -17,11 +17,15 @@ report 50100 "IUSUP Update Cuourse Price"
             end;
 
             trigger OnAfterGetRecord()
-
+            var
+                NewPrice: Decimal;
+                success: Boolean;
             begin
                 //Codigo que se ejecuta en cada una de las iteraciones del bucle
+
+                NewPrice := Course.Price * (1 + Percentaje / 100);
                 Message('Iterando el bucle ' + Course."No.");
-                Course.Validate(Price, Course.Price * (Percentaje / 100));
+                Course.Validate(Price, NewPrice);
                 Course.Modify();
 
             end;

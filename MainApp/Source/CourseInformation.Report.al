@@ -1,51 +1,40 @@
 report 50101 "IUSUP Course Information"
 {
-    Caption = 'Course Information', comment = 'ESP="Información del curso"';
+    Caption = 'Course Information', comment = 'ESP="Información cursos"';
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
-    DefaultRenderingLayout = RDLC;
+    DefaultRenderingLayout = Excel;
 
     dataset
     {
         dataitem(Course; "IUSUP Course")
         {
-            column(CourseNo; "No.")
-            {
+            // PrintOnlyIfDetail = true;
+            column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl) { }
+            column(Customer___ListCaption; Customer___ListCaptionLbl) { }
+            column(COMPANYNAME; COMPANYPROPERTY.DisplayName()) { }
+            column(CourseNo; "No.") { IncludeCaption = true; }
+            column(CourseName; Name) { IncludeCaption = true; }
+            column(Price; Price) { IncludeCaption = true; }
 
-            }
-            column(CourseName; Name)
-            {
-
-            }
-            column(CoursePrice; Price)
-            {
-
-            }
-            dataitem("IUSUP Course Edition"; "IUSUP Course Edition")
+            dataitem("CLIP Course Edition"; "IUSUP Course Edition")
             {
                 DataItemLinkReference = Course;
-                dataitemlink = "Course No." = field("No.");
+                DataItemLink = "Course No." = field("No.");
+                DataItemTableView = sorting("Course No.", Edition);
+
                 column(CourseEdition; Edition)
                 {
-
+                    IncludeCaption = true;
                 }
-                column(CourseEditionSales__Qty__; "sales (Qty.)")
-                {
-
-                }
-                column(CourseEditionMax_students; "Max. students")
-                {
-
-                }
+                column(CourseEditionMaxStudents; "Max. Students") { IncludeCaption = true; }
+                column(CourseEditionSalesQty; "Sales (Qty.)") { IncludeCaption = true; }
             }
         }
-
     }
 
     requestpage
     {
-        AboutTitle = 'Teaching tip title';
-        AboutText = 'Teaching tip content';
         layout
         {
             area(Content)
@@ -53,11 +42,13 @@ report 50101 "IUSUP Course Information"
                 group(Options)
                 {
                     Caption = 'Options', comment = 'ESP="Opciones"';
+                    // field(Name; SourceExpression)
+                    // {
 
+                    // }
                 }
             }
         }
-
     }
 
     rendering
@@ -65,9 +56,21 @@ report 50101 "IUSUP Course Information"
         layout(RDLC)
         {
             Type = RDLC;
-            LayoutFile = 'Source/MiReport.rdl';
+            LayoutFile = 'Source/CourseInformation.rdl';
+        }
+        layout(Excel)
+        {
+            Type = Excel;
+            LayoutFile = 'Source/CourseInformation.xlsx';
+        }
+        layout(Word)
+        {
+            Type = Word;
+            LayoutFile = 'Source/CourseInformation.docx';
         }
     }
 
-
+    var
+        CurrReport_PAGENOCaptionLbl: Label 'Page', Comment = 'ESP="Pág."';
+        Customer___ListCaptionLbl: Label 'Course Information', Comment = 'ESP="Información cursos"';
 }
